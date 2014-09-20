@@ -1,0 +1,14 @@
+/*
+	This would be your main styles.scss where you include
+	all your parials. You would want to include the placeholder mixin
+	in the same area where you would define your other mixins.
+
+	Alternatively, you could just copy the mixin declaration into where
+	your mixins are kept
+*/
+
+// Import placeholder-mixin
+@import "../../src/sass/placeholder-mixin";
+
+// Placeholder mixin example
+@import "placeholder-mixin-example";

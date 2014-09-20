@@ -1,0 +1,97 @@
+/*
+	This would be your main styles.scss where you include
+	all your parials. You would want to include the placeholder mixin
+	in the same area where you would define your other mixins.
+
+	Alternatively, you could just copy the mixin declaration into where
+	your mixins are kept
+*/
+/*
+	@param $width  px, em, percentage, null
+	@param $height px, em, percentage, null
+	@param $ratio height to width ratio, ie: 0.5 would correspond to a ratio of height: 0.5, width: 1, or 250px to 500px
+	@options map 
+
+	Specify the known variables to create a placeholder
+*/
+/*
+	@param $width  Width of the placeholder
+	@param $height  Height of the placeholder
+
+	Quick little calculation to determine the height to width ratio
+*/
+/* line 1, ../scss/_placeholder-mixin-example.scss */
+.placeholder {
+  outline: 1px dashed silver;
+  background-color: orange;
+}
+
+/* line 9, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .ratio .ratio-only {
+  border: 5px solid red;
+}
+/* line 52, ../../src/sass/_placeholder-mixin.scss */
+.placeholder-mixin .ratio .ratio-only:after {
+  content: '';
+  display: inline-block;
+  padding-top: 60%;
+  width: 0;
+}
+/* line 13, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .ratio .ratio-with-width-px {
+  border: 5px solid red;
+  width: 200px;
+}
+/* line 52, ../../src/sass/_placeholder-mixin.scss */
+.placeholder-mixin .ratio .ratio-with-width-px:after {
+  content: '';
+  display: inline-block;
+  padding-top: 80%;
+  width: 0;
+}
+/* line 17, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .ratio .ratio-with-width-per {
+  border: 5px solid red;
+  width: 60%;
+}
+/* line 52, ../../src/sass/_placeholder-mixin.scss */
+.placeholder-mixin .ratio .ratio-with-width-per:after {
+  content: '';
+  display: inline-block;
+  padding-top: 40%;
+  width: 0;
+}
+/* line 25, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .units .width-px-height-px {
+  width: 70px;
+  height: 250px;
+}
+/* line 29, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .units .width-per-height-per {
+  border: 5px solid red;
+  width: 55%;
+}
+/* line 52, ../../src/sass/_placeholder-mixin.scss */
+.placeholder-mixin .units .width-per-height-per:after {
+  content: '';
+  display: inline-block;
+  padding-top: 25%;
+  width: 0;
+}
+/* line 33, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .units .width-px-height-per {
+  border: 5px solid red;
+  width: 200px;
+}
+/* line 52, ../../src/sass/_placeholder-mixin.scss */
+.placeholder-mixin .units .width-px-height-per:after {
+  content: '';
+  display: inline-block;
+  padding-top: 45%;
+  width: 0;
+}
+/* line 37, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .units .width-per-height-px {
+  width: 70%;
+  height: 200px;
+}

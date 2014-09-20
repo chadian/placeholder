@@ -1,0 +1,109 @@
+/*
+	@param $width  px, em, percentage, null
+	@param $height px, em, percentage, null
+	@param $ratio height to width ratio, ie: 0.5 would correspond to a ratio of height: 0.5, width: 1, or 250px to 500px
+	@options map 
+
+	Specify the known variables to create a placeholder
+*/
+@mixin placeholder($width: null, $height: null, $ratio: null, $options: (use-ratio-height: null)) {
+
+	$use-ratio-height: map-get($options, 'use-ratio-height');
+
+	$width: force-unknown-units-to-px($width);
+	$height: force-unknown-units-to-px($height);
+
+	// If a forced setting wasn't specified on the $options map, then we will determine if we should use a ratio-based height
+	@if ($use-ratio-height == null) {
+		@if (($height != null and unit($height) == '%') or ($ratio != null)) {
+			border: 5px solid red;
+			$use-ratio-height: true;
+		}
+		@else {
+			$use-ratio-height: false;
+		}
+	}
+
+	@if (
+		($width == null and $height == null and $ratio == null)
+		or ($width == null and $ratio == null)
+		or ($height == null and $ratio == null)
+	) {
+		@warn "Not enough parameters specified. Ensure that either both a width and height are specified,
+		or, a width or a height is specified along with the ratio, or just a ratio";
+	}
+
+	@if ($use-ratio-height) {
+
+		@if ($width != null and $height != null) {
+			$ratio: get-height-to-width-ratio($height, $width);
+		}
+
+		@if ($height != null) {
+			@warn "Specified $height parameter will not be used as the height will be dynamically set with :after padding-top by the ratio";
+		}
+
+		@if ($ratio != null) {
+
+			@if ($width != null) {
+				width: $width;
+			}
+
+			&:after {
+				content: '';
+				display: inline-block;
+				padding-top: percentage($ratio);
+				width: 0;
+			}
+		}
+		// Could not come up with a valid ratio
+		@else {
+			@error "Use a percentage height or equal units to calculate a ratio";
+		}
+	}
+	@else {
+		width: $width;
+		height: $height;
+	}
+}
+
+/*
+	@param $width  Width of the placeholder
+	@param $height  Height of the placeholder
+
+	Quick little calculation to determine the height to width ratio
+*/
+@function get-height-to-width-ratio($height, $width) {
+
+	@if (unit($height) == '%') {
+		@return ($height/100%);
+	}
+	@elseif (do-units-match($height, $width)) {
+		@return ($height / $width);		
+	}
+	@else {
+		@return false;
+	}
+}
+
+
+@function do-units-match($unit1, $unit2) {
+	@return (unit($unit1) == unit($unit2));
+}
+
+@function force-unknown-units-to-px($unit) {
+
+	@if ($unit == null) {
+		@return null;
+	}
+	@elseif (unit($unit) != null and unit($unit) != "") {
+		@return $unit;
+	}
+	@elseif ($unit != null) {
+		// Return the units as pixels
+		@return $unit + px;
+	}
+	@else {
+		@return null;
+	}
+}

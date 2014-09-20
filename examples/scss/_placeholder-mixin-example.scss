@@ -1,0 +1,41 @@
+.placeholder {
+	outline: 1px dashed silver;
+	background-color: orange;
+}
+
+.placeholder-mixin {
+	.ratio {
+
+		.ratio-only {
+			@include placeholder(null, null, 0.6);
+		}
+		
+		.ratio-with-width-px {
+			@include placeholder(200px, null, 0.8);
+		}
+		
+		.ratio-with-width-per {
+			@include placeholder(60%, null, 0.4);	
+		}
+		
+	}
+
+	.units {
+		
+		.width-px-height-px {
+			@include placeholder(70px, 250px);
+		}
+
+		.width-per-height-per {
+			@include placeholder(55%, 25%);
+		}
+
+		.width-px-height-per {
+			@include placeholder(200px, 45%);
+		}
+
+		.width-per-height-px {
+			@include placeholder(70%, 200px);
+		}
+	}
+}
