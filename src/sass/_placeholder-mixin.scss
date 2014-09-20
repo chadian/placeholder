@@ -1,10 +1,16 @@
 /*
-	@param $width  px, em, percentage, null
-	@param $height px, em, percentage, null
-	@param $ratio height to width ratio, ie: 0.5 would correspond to a ratio of height: 0.5, width: 1, or 250px to 500px
-	@options map 
+	@param $width (px, em, percentage, null)
+	@param $height (px, em, percentage, null)
+	@param $ratio (decimal) height to width ratio, ie: 0.5 would correspond to a ratio of height: 0.5, width: 1, or 250px to 500px
+	@options $options (map) The following options can be specified:
+		use-ratio-height: The height can be forced to be calculated as a ratio, given that the units are the same as the width
 
-	Specify the known variables to create a placeholder
+
+	Provide one of the following sets of parameters to create a placefolder:
+		width and height
+		width and ratio
+		height and ratio
+		ratio
 */
 @mixin placeholder($width: null, $height: null, $ratio: null, $options: (use-ratio-height: null)) {
 
@@ -16,7 +22,6 @@
 	// If a forced setting wasn't specified on the $options map, then we will determine if we should use a ratio-based height
 	@if ($use-ratio-height == null) {
 		@if (($height != null and unit($height) == '%') or ($ratio != null)) {
-			border: 5px solid red;
 			$use-ratio-height: true;
 		}
 		@else {
@@ -86,12 +91,22 @@
 	}
 }
 
+/*
+	@param $unit1 (css unit)
+	@param $unit2 (css unit)
 
+	Returns true if the units match, ie 25px and 50px, and false if they don't.
+*/
 @function do-units-match($unit1, $unit2) {
 	@return (unit($unit1) == unit($unit2));
 }
 
-@function force-unknown-units-to-px($unit) {
+/*
+	@param unit
+
+	Helper function to ensure that a unit is specified. If a number is provided and no units, px wil be forced
+*/
+@function force-unknown-units-to-px($unit, $force-unit: 'px') {
 
 	@if ($unit == null) {
 		@return null;
@@ -101,7 +116,7 @@
 	}
 	@elseif ($unit != null) {
 		// Return the units as pixels
-		@return $unit + px;
+		@return $unit + $force-unit;
 	}
 	@else {
 		@return null;
