@@ -16,8 +16,8 @@
 
 	$use-ratio-height: map-get($options, 'use-ratio-height');
 
-	$width: force-unknown-units-to-px($width);
-	$height: force-unknown-units-to-px($height);
+	$width: force-missing-units-to-px($width);
+	$height: force-missing-units-to-px($height);
 
 	// If a forced setting wasn't specified on the $options map, then we will determine if we should use a ratio-based height
 	@if ($use-ratio-height == null) {
@@ -106,7 +106,7 @@
 
 	Helper function to ensure that a unit is specified. If a number is provided and no units, px wil be forced
 */
-@function force-unknown-units-to-px($unit, $force-unit: 'px') {
+@function force-missing-units-to-px($unit, $force-unit: 'px') {
 
 	@if ($unit == null) {
 		@return null;
