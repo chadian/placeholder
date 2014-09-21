@@ -2,6 +2,9 @@
 <head>
 	<title>Placeholder Examples</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script type="text/javascript" src="../lib/platform/platform.js"></script>
+	<script type="text/javascript" src="../lib/polymer/polymer.js"></script>
+	<link rel="import" href="../src/polymer/placeholder-polymer.html">
 </head>
 <body>
 	<section class="placeholder-mixin">
@@ -32,6 +35,11 @@
 			<div id="vanilla-ratio-with-width-per" class="placeholder"></div>
 		</div>
 	</section>
-		<script type="text/javascript" src="../src/js/placeholder-vanilla.js"></script>
+	<section class="polymer">
+		<h1>Polymer</h1>
+		<place-holder pwidth="250px" pheight="250px" class="placeholder"></place-holder>
+	</section>
+	<script type="text/javascript" src="../src/js/placeholder-vanilla.js"></script>
+	<script type="text/javascript" src="js/vanilla-placeholder-examples.js"></script>
 </body>
 </html>

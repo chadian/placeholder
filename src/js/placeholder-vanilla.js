@@ -8,7 +8,8 @@ var PlaceholderVanilla = (function() {
 	*/
 	var placeholder = function(element, options) {
 		
-		var DEFAULT_FORCED_UNITS = 'px';
+		this.DEFAULT_FORCED_UNITS = 'px';
+		this.RATIO_HEIGHT_ELEMENT_CLASS = 'ratio-height';
 			
 		// Ensure we're dealing with a DOM element
 		if (!(element instanceof Node)) {
@@ -21,10 +22,9 @@ var PlaceholderVanilla = (function() {
 		this.widthMeasure = this.parseMeasure(this.options.width);
 		this.heightMeasure = this.parseMeasure(this.options.height);
 
-		this.widthMeasure.units = this.widthMeasure.units || DEFAULT_FORCED_UNITS;
-		this.heightMeasure.units = this.heightMeasure.units || DEFAULT_FORCED_UNITS;
+		this.widthMeasure.units = this.widthMeasure.units || this.DEFAULT_FORCED_UNITS;
+		this.heightMeasure.units = this.heightMeasure.units || this.DEFAULT_FORCED_UNITS;
 
-		this.applyDimensions();
 	}
 
 	/*
@@ -97,28 +97,46 @@ var PlaceholderVanilla = (function() {
 			
 		},
 
-		'setRatioDimensions': function(widthMeasure, ratio) {
+		'setRatioDimensions': function(widthMeasure, ratioElement) {
 			if (widthMeasure.number) {
 				this.element.style.width = widthMeasure.number + widthMeasure.units;
 			}
 
+			this.element.appendChild(ratioElement);
+		},
+
+		'getInnerRatioElement': function(ratio) {
 			var ratioElement = document.createElement('div');
+			ratioElement.setAttribute('class', this.RATIO_HEIGHT_ELEMENT_CLASS);
 			ratioElement.style.width = 0;
 			ratioElement.style.paddingTop = (ratio * 100) + '%';
 			ratioElement.style.display = 'inline_block';
 			ratioElement.style.verticalAlign = 'middle';
 
-			this.element.appendChild(ratioElement);
+			return ratioElement;
 		},
 		
+		'destroyExistingRatioElement': function() {
+			var destroyQueue = this.element.getElementsByClassName(this.RATIO_HEIGHT_ELEMENT_CLASS);
+			
+			for (var element in destroyQueue) {
+				if (element instanceof Node) {
+					element.parentNode.removeChild(element);	
+				}
+			}
+		},
+
 		'applyDimensions': function() {
 			
+			this.destroyExistingRatioElement();
+
 			if (this.shouldUseRatio()) {
 
 				var ratio = this.calculateHeightToWidthRatio(this.widthMeasure, this.heightMeasure);
-				console.log("RATIO " + ratio);
+
 				if (ratio) {
-					this.setRatioDimensions(this.widthMeasure, ratio);
+					var ratioElement = this.getInnerRatioElement(ratio);
+					this.setRatioDimensions(this.widthMeasure, ratioElement);
 				} else {
 					throw "Unable to calculate ratio based on given units. Please ensure that width and height units match, or that height is a percentage";
 				}
@@ -132,45 +150,4 @@ var PlaceholderVanilla = (function() {
 	return placeholder;
 
 }());
-
-var element_width_px_height_px = document.getElementById('vanilla-width-px-height-px');
-var placeholder_width_px_height_px_element = new PlaceholderVanilla(element_width_px_height_px, {
-	width: '300px',
-	height: '125px'
-});
-
-var element_width_per_height_per = document.getElementById('vanilla-width-per-height-per');
-var placeholder_width_per_height_per = new PlaceholderVanilla(element_width_per_height_per, {
-	width: '50%',
-	height: '35%'
-});
-
-var element_width_px_height_per = document.getElementById('vanilla-width-px-height-per');
-var placeholder_width_px_height_per = new PlaceholderVanilla(element_width_px_height_per, {
-	width: '200px',
-	height: '50%'
-});
-
-var element_width_per_height_px = document.getElementById('vanilla-width-per-height-px');
-var placeholder_width_per_height_px = new PlaceholderVanilla(element_width_per_height_px, {
-	width: '25%',
-	height: '200px'
-});
-
-var element_ratio_only = document.getElementById('vanilla-ratio-only');
-var placeholder_element_ratio_only = new PlaceholderVanilla(element_ratio_only, {
-	ratio: 0.35
-});
-
-var element_ratio_with_width_px = document.getElementById('vanilla-ratio-with-width-px');
-var placeholder_ratio_with_width_px = new PlaceholderVanilla(element_ratio_with_width_px, {
-	width: '150px',
-	ratio: 0.65
-});
-
-var element_ratio_with_width_per = document.getElementById('vanilla-ratio-with-width-per');
-var placeholder_ratio_with_width_per = new PlaceholderVanilla(element_ratio_with_width_per, {
-	width: '25%',
-	ratio: 0.35
-});
 

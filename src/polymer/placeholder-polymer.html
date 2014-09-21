@@ -1,0 +1,77 @@
+<script type="text/javascript" src="../js/placeholder-vanilla.js"></script>
+<polymer-element name="place-holder" attributes="pwidth pheight pratio puseratio">
+	<template>
+		<style type="text/css">
+		:host {
+        	display: inline-block;
+		}
+	</style>
+	</template>
+	<script type="text/javascript">	
+
+		Polymer('place-holder', {
+	      
+			pwidth: null,
+			pheight: null,
+			pratio: null,
+			puseratio: null,
+			placeholderVanilla: null,
+
+			ready: function() {
+				
+				// Because the appendChild is overridden on this element to force the inner
+				PlaceholderVanilla.prototype.destroyExistingRatioElement = function() {
+
+					var destroyQueue = this.element.shadowRoot.querySelectorAll('.' + this.RATIO_HEIGHT_ELEMENT_CLASS);
+
+					[].slice.call(destroyQueue).forEach(function(element, i){
+						element.parentNode.removeChild(element);
+					});
+				}
+
+				this.generatePlaceholderVanilla();
+			},
+
+			generatePlaceholderVanilla: function() {
+				
+				var options = {
+					'width': this.pwidth,
+					'height': this.pheight,
+					'ratio': this.pratio,
+				};
+
+				if (this.puseratio !== null && typeof this.puseratio == 'boolean') {
+					options.useRatio = this.puseratio;
+				}
+
+				this.placeholderVanilla = new PlaceholderVanilla(this, options).applyDimensions();
+			},
+
+			pwidthChanged: function() {
+				this.attrChanged();
+			},
+
+			pheightChanged: function() {
+				this.attrChanged();
+			},
+
+			pratioChanged: function() {
+				this.attrChanged();
+			},
+
+			attrChanged: function() {
+				this.placeholderVanilla = null; // kill old one
+				this.generatePlaceholderVanilla(); // regenerate with new options
+			},
+
+			// TODO: Override prototype of PlaceholderVanilla.setRatioDimensions (since been refactored so no need to mess with DOM-level native functions)
+			// override default appendChild on element. PlaceholderVanilla injects a inner div to create the percentage height and
+			// instead of making this exposed as a normal element in the DOM we can hide it in the shadow DOM to completely encapsulate
+			// the piece that gives this element the desired height.
+			appendChild: function(child) {
+				return this.shadowRoot.appendChild(child);
+			}
+	    });
+
+	</script>
+</polymer-element>
