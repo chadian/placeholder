@@ -18,6 +18,11 @@
 			placeholderVanilla: null,
 
 			ready: function() {
+
+				this.generatePlaceholderVanilla();
+			},
+
+			modifyPlaceholderVanillaDOMMethods: function(phVanilla) {
 				
 				/* 
 					In the case that dimensions are being set with an inner ratio element for height, then
@@ -25,7 +30,7 @@
 					to override the way the setRadioDimensions prototype method adds inner ratio element.
 				*/
 
-				PlaceholderVanilla.prototype.setRatioDimensions = function(widthMeasure, ratioElement) {
+				phVanilla.setRatioDimensions = function(widthMeasure, ratioElement) {
 					
 					if (widthMeasure.number) {
 						this.element.style.width = widthMeasure.number + widthMeasure.units;
@@ -40,7 +45,7 @@
 					to override the 'destroyExistingRatioElement' method to destroy the proper ratio element that
 					is hiding in the shadow DOM
 				*/
-				PlaceholderVanilla.prototype.destroyExistingRatioElement = function() {
+				phVanilla.destroyExistingRatioElement = function() {
 
 					var destroyQueue = this.element.shadowRoot.querySelectorAll('.' + this.RATIO_HEIGHT_ELEMENT_CLASS);
 
@@ -48,8 +53,6 @@
 						element.parentNode.removeChild(element);
 					});
 				}
-
-				this.generatePlaceholderVanilla();
 			},
 
 			generatePlaceholderVanilla: function() {
@@ -70,7 +73,13 @@
 					PlaceholderVanilla ends up adding inline styles to the element itself which 
 					exposes how the dimensions are set.
 				*/
-				this.placeholderVanilla = new PlaceholderVanilla(this, options).applyDimensions();
+				this.placeholderVanilla = new PlaceholderVanilla(this, options);
+
+				// Override standard methods with versions that will use the shadow DOM instead.
+				this.modifyPlaceholderVanillaDOMMethods(this.placeholderVanilla);
+
+				// call only after 'modifyPlaceholderVanillaDOMMethods' so that shadow dom is used for application
+				this.placeholderVanilla.applyDimensions();
 			},
 
 			pwidthChanged: function() {
