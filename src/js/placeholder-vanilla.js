@@ -29,6 +29,12 @@ var PlaceholderVanilla = (function() {
 		this.widthMeasure.units = this.widthMeasure.units || this.DEFAULT_FORCED_UNITS;
 		this.heightMeasure.units = this.heightMeasure.units || this.DEFAULT_FORCED_UNITS;
 
+		/*
+			TODO
+			Re-write the constructor to capture some of this initial setup in a method,
+			so that it can be re-used if new options want to be passed in for the placeholder
+		*/
+
 	}
 
 	/*

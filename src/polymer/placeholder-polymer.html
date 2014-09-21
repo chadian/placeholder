@@ -35,7 +35,11 @@
 					this.element.shadowRoot.appendChild(ratioElement);
 				}
 
-				// destroy existing ratio element requires knowledge of the shadow dom
+				/*
+					Because we are overriding the PlaceholderVanilla.prototype.setRatioDimensions, we also need
+					to override the 'destroyExistingRatioElement' method to destroy the proper ratio element that
+					is hiding in the shadow DOM
+				*/
 				PlaceholderVanilla.prototype.destroyExistingRatioElement = function() {
 
 					var destroyQueue = this.element.shadowRoot.querySelectorAll('.' + this.RATIO_HEIGHT_ELEMENT_CLASS);
@@ -60,6 +64,12 @@
 					options.useRatio = this.puseratio;
 				}
 
+				/*
+					TODO
+					Instead of sending the element itself, send a container in the shadow DOM.
+					PlaceholderVanilla ends up adding inline styles to the element itself which 
+					exposes how the dimensions are set.
+				*/
 				this.placeholderVanilla = new PlaceholderVanilla(this, options).applyDimensions();
 			},
 
