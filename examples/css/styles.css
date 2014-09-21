@@ -55,74 +55,213 @@
   background-color: #cccccc;
 }
 
-/* line 1, ../scss/_base.scss */
+/*
+	VARS
+*/
+/*
+	FONTS
+*/
+/* line 10, ../scss/_base.scss */
+h1, h2, h3, h4, h5, h6 {
+  color: #fff;
+  font-family: "Quicksand", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-transform: lowercase;
+}
+
+/* line 16, ../scss/_base.scss */
+h1 {
+  font-size: 2.5em;
+}
+
+/* line 20, ../scss/_base.scss */
+h2 {
+  font-size: 2em;
+}
+
+/* line 24, ../scss/_base.scss */
+body, p {
+  color: #fff;
+  font-size: 22px;
+  font-family: 'Droid Serif', serif;
+}
+
+/* line 30, ../scss/_base.scss */
+p {
+  line-height: 1.5em;
+  letter-spacing: 0.03em;
+  margin: 1.5em 0;
+}
+
+/* line 36, ../scss/_base.scss */
+pre {
+  background-color: #fff;
+  border-radius: 5px;
+  color: #256F5B;
+  font-family: "Droid Sans Mono", "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-size: 0.8em;
+  margin: 2em;
+  padding: 1em;
+  overflow: scroll;
+}
+/* line 46, ../scss/_base.scss */
+pre::selection {
+  background-color: rgba(37, 111, 91, 0.35) !important;
+}
+
+/*
+	PLACEHOLDER STYLING
+*/
+/* line 55, ../scss/_base.scss */
 .placeholder, place-holder {
   box-sizing: border-box;
+  display: block;
 }
 
-/* line 10, ../scss/_base.scss */
+/*
+	STYLING	
+*/
+/* line 68, ../scss/_base.scss */
 html, body {
-  background-color: #256F5B;
+  background-color: #256f5b;
+}
+
+/* line 72, ../scss/_base.scss */
+html {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 77, ../scss/_base.scss */
+body {
+  border: 1em solid white;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 3em;
+}
+/* line 83, ../scss/_base.scss */
+body ::selection {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+/* line 90, ../scss/_base.scss */
+header h1 {
+  font-size: 4em;
+  letter-spacing: 0.2em;
+  margin: 1em;
+  text-align: center;
+}
+/* line 97, ../scss/_base.scss */
+header .intro {
+  margin-bottom: 3em;
+  text-align: center;
+}
+/* line 102, ../scss/_base.scss */
+header .methods {
+  text-align: left;
+}
+/* line 107, ../scss/_base.scss */
+header ul {
+  padding-left: 2em;
+}
+/* line 110, ../scss/_base.scss */
+header ul li {
+  margin-top: 0.5em;
+  padding-left: 0.75em;
+}
+/* line 116, ../scss/_base.scss */
+header place-holder {
+  margin-top: 0.75em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 123, ../scss/_base.scss */
+.example {
+  border-top: 1px dashed white;
+  padding: 2em 0;
+}
+/* line 127, ../scss/_base.scss */
+.example .placeholder {
+  margin: auto;
+}
+
+/*
+	BASIC LAYOUT
+*/
+/* line 135, ../scss/_base.scss */
+header, section, footer {
+  margin: auto;
+  max-width: 960px;
+}
+
+/* line 140, ../scss/_base.scss */
+header, section {
+  margin-bottom: 3em;
+}
+
+/* line 145, ../scss/_base.scss */
+section *:first-child {
+  margin-top: 0;
 }
 
 /* line 57, ../../src/scss/_placeholder-mixin.scss */
-.placeholder-mixin .ratio .ratio-only:after {
+.placeholder-mixin .ratio #ratio-only:after {
   content: '';
   display: inline-block;
-  padding-top: 60%;
+  padding-top: 30%;
   width: 0;
 }
-/* line 12, ../scss/_placeholder-mixin-example.scss */
-.placeholder-mixin .ratio .ratio-with-width-px {
-  width: 200px;
+/* line 8, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .ratio #ratio-with-width-px {
+  width: 320px;
 }
 /* line 57, ../../src/scss/_placeholder-mixin.scss */
-.placeholder-mixin .ratio .ratio-with-width-px:after {
+.placeholder-mixin .ratio #ratio-with-width-px:after {
   content: '';
   display: inline-block;
   padding-top: 80%;
   width: 0;
 }
-/* line 16, ../scss/_placeholder-mixin-example.scss */
-.placeholder-mixin .ratio .ratio-with-width-per {
+/* line 12, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .ratio #ratio-with-width-per {
   width: 60%;
 }
 /* line 57, ../../src/scss/_placeholder-mixin.scss */
-.placeholder-mixin .ratio .ratio-with-width-per:after {
-  content: '';
-  display: inline-block;
-  padding-top: 40%;
-  width: 0;
-}
-/* line 24, ../scss/_placeholder-mixin-example.scss */
-.placeholder-mixin .units .width-px-height-px {
-  width: 100px;
-  height: 250px;
-}
-/* line 28, ../scss/_placeholder-mixin-example.scss */
-.placeholder-mixin .units .width-per-height-per {
-  width: 30%;
-}
-/* line 57, ../../src/scss/_placeholder-mixin.scss */
-.placeholder-mixin .units .width-per-height-per:after {
-  content: '';
-  display: inline-block;
-  padding-top: 25%;
-  width: 0;
-}
-/* line 32, ../scss/_placeholder-mixin-example.scss */
-.placeholder-mixin .units .width-px-height-per {
-  width: 200px;
-}
-/* line 57, ../../src/scss/_placeholder-mixin.scss */
-.placeholder-mixin .units .width-px-height-per:after {
+.placeholder-mixin .ratio #ratio-with-width-per:after {
   content: '';
   display: inline-block;
   padding-top: 45%;
   width: 0;
 }
-/* line 36, ../scss/_placeholder-mixin-example.scss */
-.placeholder-mixin .units .width-per-height-px {
-  width: 70%;
-  height: 200px;
+/* line 20, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .units #width-px-height-px {
+  width: 250px;
+  height: 320px;
+}
+/* line 24, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .units #width-per-height-per {
+  width: 60%;
+}
+/* line 57, ../../src/scss/_placeholder-mixin.scss */
+.placeholder-mixin .units #width-per-height-per:after {
+  content: '';
+  display: inline-block;
+  padding-top: 25%;
+  width: 0;
+}
+/* line 28, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .units #width-px-height-per {
+  width: 400px;
+}
+/* line 57, ../../src/scss/_placeholder-mixin.scss */
+.placeholder-mixin .units #width-px-height-per:after {
+  content: '';
+  display: inline-block;
+  padding-top: 60%;
+  width: 0;
+}
+/* line 32, ../scss/_placeholder-mixin-example.scss */
+.placeholder-mixin .units #width-per-height-px {
+  width: 30%;
+  height: 420px;
 }

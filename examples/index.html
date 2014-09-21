@@ -2,42 +2,200 @@
 <head>
 	<title>Placeholder Examples</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link href='http://fonts.googleapis.com/css?family=Quicksand:300|Droid+Sans+Mono|Droid+Serif' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="../lib/platform/platform.js"></script>
 	<script type="text/javascript" src="../lib/polymer/polymer.js"></script>
 	<link rel="import" href="../src/polymer/placeholder-polymer.html">
 </head>
 <body>
+	<header>
+		<div class="intro">
+			<h1>
+				<span>placeholder</span>
+				<place-holder pwidth="250px" pheight="250px"></place-holder>
+			</h1>
+			
+			<p>
+				An experiment exploring different methods of creating placeholders for images in our <em>fresh</em> interactive wireframes we're all using these days. There are services that will generate images, but, then you're depending on an internet connection. Hopefully, you will find one of these methods suitable and lightweight for what you're looking for.
+			</p>
+		</div>
+		<div class="methods">
+			<p>Methods:</p>
+			<ul>
+				<li>SASS mixin</li>
+				<li>Vanilla Javascript <em>yay, no dependencies</em></li>
+				<li>Polymer <em>fancy custom element based on Google's polymer project</em></li>
+			</ul>
+			<p>
+				In all the methods there are the basic concepts of creating a container that gives flexible ways to define the dimensions. The following combinations can be used to define the layout.
+			</p>
+			<ul>
+				<li>width and height</li>
+				<li>width and ratio</li>
+				<li>ratio</li>
+			</ul>
+			<p>
+				The advantage of using the ratio is that you can maintain an aspect ratio of the type of image you will be using. Also, if the width is set in <em>px</em> and the height as a <em>%</em>, the height percentage will be used as ratio in terms of the width, not of the parent.
+			</p>
+			<p>
+				<em>ie: width = 200px, height = 25%, the container should result in a height (based on the ratio 0.25) of 50px</em>
+			</p>
+		</div>
+	</header>
 	<section class="placeholder-mixin">
-		<h1>Placeholder mixin example</h1>
+		<h1>sass mixin</h1>
+		<p>
+			The idea behind the sass mixin is that you would use the mixin on css selectors to create placeholders.
+		</p>
+
+<pre>
+@include placeholder($width: null, $height: null, $ratio: null, $options: (use-ratio-height: null))
+</pre>
+
+		<h2>examples</h2>
 		<div class="units">
-			<div class="placeholder width-px-height-px"></div>
-			<div class="placeholder width-per-height-per"></div>
-			<div class="placeholder width-px-height-per"></div>
-			<div class="placeholder width-per-height-px"></div>
+			<div class="example">
+
+<pre>
+#placeholder {
+	@include placeholder(250px, 320px);
+}
+</pre>
+				<div id="width-px-height-px" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+#placeholder {
+	@include placeholder(60%, 25%);
+}
+</pre>
+				<div id="width-per-height-per" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+#placeholder {
+	@include placeholder(400px, 60%);
+}
+</pre>				
+				<div id="width-px-height-per" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+#placeholder {
+	@include placeholder(30%, 420px);
+}
+</pre>
+				<div id="width-per-height-px" class="placeholder"></div>
+			</div>
 		</div>
 		<div class="ratio">
-			<div class="placeholder ratio-only"></div>
-			<div class="placeholder ratio-with-width-px"></div>
-			<div class="placeholder ratio-with-width-per"></div>
+			<div class="example">
+<pre>
+#placeholder {
+	@include placeholder(null, null, 0.3);
+}
+</pre>
+				<div id="ratio-only" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+#placeholder {
+	@include placeholder(320px, null, 0.8);
+}
+</pre>
+				<div id="ratio-with-width-px" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+#placeholder {
+	@include placeholder(60%, null, 0.45);	
+}
+</pre>
+				<div id="ratio-with-width-per" class="placeholder"></div>
+			</div>
 		</div>
 	</section>
 	<section class="placeholder-vanilla">
+		<h1>vanilla js</h1>
+		<p>
+			Create placeholders with <em>good 'ol javascript</em>, no dependencies on any other library. Create an element, or select one that already exists, and pass in the DOM element with the necssary options. This is method is called <em>Placeholder Vanilla</em> because there are plans to write a <em>Placeholder jQuery</em>, too.
+		</p>
+<pre>
+new PlaceholderVanilla(element, options)
+</pre>
+		<h2>examples</h2>
 		<div class="units">
-			<h1>Placeholder vanilla example</h1>
-			<div id="vanilla-width-px-height-px" class="placeholder"></div>
-			<div id="vanilla-width-per-height-per" class="placeholder"></div>
-			<div id="vanilla-width-px-height-per" class="placeholder"></div>
-			<div id="vanilla-width-per-height-px" class="placeholder"></div>
+			<div class="example">
+<pre>
+new PlaceholderVanilla(element, {
+	width: '450px',
+	height: '235px'
+}).applyDimensions();
+</pre>
+				<div id="vanilla-width-px-height-px" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+new PlaceholderVanilla(element, {
+	width: '30%',
+	height: '150%'
+}).applyDimensions();
+</pre>
+				<div id="vanilla-width-per-height-per" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+new PlaceholderVanilla(element, {
+	width: '600px',
+	height: '50%'
+}).applyDimensions();
+</pre>
+				<div id="vanilla-width-px-height-per" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+new PlaceholderVanilla(element, {
+	width: '80%',
+	height: '200px'
+}).applyDimensions();
+</pre>
+				<div id="vanilla-width-per-height-px" class="placeholder"></div>
+			</div>
 		</div>
 		<div class="ratio">
-			<div id="vanilla-ratio-only" class="placeholder"></div>
-			<div id="vanilla-ratio-with-width-px" class="placeholder"></div>
-			<div id="vanilla-ratio-with-width-per" class="placeholder"></div>
+			<div class="example">
+<pre>
+new PlaceholderVanilla(element, {
+	ratio: 0.35
+}).applyDimensions();
+</pre>
+				<div id="vanilla-ratio-only" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+new PlaceholderVanilla(element, {
+	width: '350px',
+	ratio: 1.25
+}).applyDimensions();
+</pre>
+				<div id="vanilla-ratio-with-width-px" class="placeholder"></div>
+			</div>
+			<div class="example">
+<pre>
+new PlaceholderVanilla(element_ratio_with_width_per, {
+	width: '45%',
+	ratio: 1
+}).applyDimensions();
+</pre>
+				<div id="vanilla-ratio-with-width-per" class="placeholder"></div>
+			</div>
 		</div>
 	</section>
 	<section class="polymer">
 		<h1>Polymer</h1>
-		<place-holder pwidth="250px" pheight="250px"></place-holder>
+		<div class="example">
+			<place-holder pwidth="250px" pheight="250px"></place-holder>
+		</div>
 	</section>
 	<script type="text/javascript" src="../src/js/placeholder-vanilla.js"></script>
 	<script type="text/javascript" src="js/vanilla-placeholder-examples.js"></script>

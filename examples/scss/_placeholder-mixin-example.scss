@@ -1,40 +1,36 @@
-.placeholder {
-
-}
-
 .placeholder-mixin {
 	.ratio {
 
-		.ratio-only {
-			@include placeholder(null, null, 0.6);
+		#ratio-only {
+			@include placeholder(null, null, 0.3);
 		}
 		
-		.ratio-with-width-px {
-			@include placeholder(200px, null, 0.8);
+		#ratio-with-width-px {
+			@include placeholder(320px, null, 0.8);
 		}
 		
-		.ratio-with-width-per {
-			@include placeholder(60%, null, 0.4);	
+		#ratio-with-width-per {
+			@include placeholder(60%, null, 0.45);	
 		}
 		
 	}
 
 	.units {
 		
-		.width-px-height-px {
-			@include placeholder(100px, 250px);
+		#width-px-height-px {
+			@include placeholder(250px, 320px);
 		}
 
-		.width-per-height-per {
-			@include placeholder(30%, 25%);
+		#width-per-height-per {
+			@include placeholder(60%, 25%);
 		}
 
-		.width-px-height-per {
-			@include placeholder(200px, 45%);
+		#width-px-height-per {
+			@include placeholder(400px, 60%);
 		}
 
-		.width-per-height-px {
-			@include placeholder(70%, 200px);
+		#width-per-height-px {
+			@include placeholder(30%, 420px);
 		}
 	}
 }
