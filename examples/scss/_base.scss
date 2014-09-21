@@ -1,0 +1,12 @@
+.placeholder, place-holder {
+
+	@extend %placeholder-outline;
+	@extend %placeholder-x;
+	@extend %placeholder-grey-bg;
+
+	box-sizing: border-box;
+}
+
+html, body {
+	background-color: #256F5B;
+}

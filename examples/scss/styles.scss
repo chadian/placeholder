@@ -7,8 +7,12 @@
 	your mixins are kept
 */
 
-// Import placeholder-mixin
-@import "../../src/sass/placeholder-mixin";
+// Mixins & placeholders
+@import "../../src/scss/placeholder-mixin";
+@import "../../src/scss/style-helpers";
+
+// Base styling
+@import "base";
 
 // Placeholder mixin example
 @import "placeholder-mixin-example";

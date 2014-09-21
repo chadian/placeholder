@@ -7,12 +7,18 @@
 	your mixins are kept
 */
 /*
-	@param $width  px, em, percentage, null
-	@param $height px, em, percentage, null
-	@param $ratio height to width ratio, ie: 0.5 would correspond to a ratio of height: 0.5, width: 1, or 250px to 500px
-	@options map 
+	@param $width (px, em, percentage, null)
+	@param $height (px, em, percentage, null)
+	@param $ratio (decimal) height to width ratio, ie: 0.5 would correspond to a ratio of height: 0.5, width: 1, or 250px to 500px
+	@options $options (map) The following options can be specified:
+		use-ratio-height: The height can be forced to be calculated as a ratio, given that the units are the same as the width
 
-	Specify the known variables to create a placeholder
+
+	Provide one of the following sets of parameters to create a placefolder:
+		width and height
+		width and ratio
+		height and ratio
+		ratio
 */
 /*
 	@param $width  Width of the placeholder
@@ -20,77 +26,102 @@
 
 	Quick little calculation to determine the height to width ratio
 */
-/* line 1, ../scss/_placeholder-mixin-example.scss */
-.placeholder {
-  outline: 1px dashed silver;
-  background-color: orange;
+/*
+	@param $unit1 (css unit)
+	@param $unit2 (css unit)
+
+	Returns true if the units match, ie 25px and 50px, and false if they don't.
+*/
+/*
+	@param unit
+
+	Helper function to ensure that a unit is specified. If a number is provided and no units, px wil be forced
+*/
+/* line 1, ../../src/scss/_style-helpers.scss */
+.placeholder, place-holder {
+  outline: 1px dashed #6F8FA2;
 }
 
-/* line 9, ../scss/_placeholder-mixin-example.scss */
-.placeholder-mixin .ratio .ratio-only {
-  border: 5px solid red;
+/* line 5, ../../src/scss/_style-helpers.scss */
+.placeholder, place-holder {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'> <path d='M100 0 L0 100' stroke='silver' stroke-width='1' fill='none' /><path d='M0 0 L100 100' stroke='silver' stroke-width='1' fill='none' /></svg>");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%, auto;
 }
-/* line 52, ../../src/sass/_placeholder-mixin.scss */
+
+/* line 12, ../../src/scss/_style-helpers.scss */
+.placeholder, place-holder {
+  background-color: #cccccc;
+}
+
+/* line 1, ../scss/_base.scss */
+.placeholder, place-holder {
+  box-sizing: border-box;
+}
+
+/* line 10, ../scss/_base.scss */
+html, body {
+  background-color: #256F5B;
+}
+
+/* line 57, ../../src/scss/_placeholder-mixin.scss */
 .placeholder-mixin .ratio .ratio-only:after {
   content: '';
   display: inline-block;
   padding-top: 60%;
   width: 0;
 }
-/* line 13, ../scss/_placeholder-mixin-example.scss */
+/* line 12, ../scss/_placeholder-mixin-example.scss */
 .placeholder-mixin .ratio .ratio-with-width-px {
-  border: 5px solid red;
   width: 200px;
 }
-/* line 52, ../../src/sass/_placeholder-mixin.scss */
+/* line 57, ../../src/scss/_placeholder-mixin.scss */
 .placeholder-mixin .ratio .ratio-with-width-px:after {
   content: '';
   display: inline-block;
   padding-top: 80%;
   width: 0;
 }
-/* line 17, ../scss/_placeholder-mixin-example.scss */
+/* line 16, ../scss/_placeholder-mixin-example.scss */
 .placeholder-mixin .ratio .ratio-with-width-per {
-  border: 5px solid red;
   width: 60%;
 }
-/* line 52, ../../src/sass/_placeholder-mixin.scss */
+/* line 57, ../../src/scss/_placeholder-mixin.scss */
 .placeholder-mixin .ratio .ratio-with-width-per:after {
   content: '';
   display: inline-block;
   padding-top: 40%;
   width: 0;
 }
-/* line 25, ../scss/_placeholder-mixin-example.scss */
+/* line 24, ../scss/_placeholder-mixin-example.scss */
 .placeholder-mixin .units .width-px-height-px {
-  width: 70px;
+  width: 100px;
   height: 250px;
 }
-/* line 29, ../scss/_placeholder-mixin-example.scss */
+/* line 28, ../scss/_placeholder-mixin-example.scss */
 .placeholder-mixin .units .width-per-height-per {
-  border: 5px solid red;
-  width: 55%;
+  width: 30%;
 }
-/* line 52, ../../src/sass/_placeholder-mixin.scss */
+/* line 57, ../../src/scss/_placeholder-mixin.scss */
 .placeholder-mixin .units .width-per-height-per:after {
   content: '';
   display: inline-block;
   padding-top: 25%;
   width: 0;
 }
-/* line 33, ../scss/_placeholder-mixin-example.scss */
+/* line 32, ../scss/_placeholder-mixin-example.scss */
 .placeholder-mixin .units .width-px-height-per {
-  border: 5px solid red;
   width: 200px;
 }
-/* line 52, ../../src/sass/_placeholder-mixin.scss */
+/* line 57, ../../src/scss/_placeholder-mixin.scss */
 .placeholder-mixin .units .width-px-height-per:after {
   content: '';
   display: inline-block;
   padding-top: 45%;
   width: 0;
 }
-/* line 37, ../scss/_placeholder-mixin-example.scss */
+/* line 36, ../scss/_placeholder-mixin-example.scss */
 .placeholder-mixin .units .width-per-height-px {
   width: 70%;
   height: 200px;

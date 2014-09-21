@@ -1,6 +1,5 @@
 .placeholder {
-	outline: 1px dashed silver;
-	background-color: orange;
+
 }
 
 .placeholder-mixin {
@@ -23,11 +22,11 @@
 	.units {
 		
 		.width-px-height-px {
-			@include placeholder(70px, 250px);
+			@include placeholder(100px, 250px);
 		}
 
 		.width-per-height-per {
-			@include placeholder(55%, 25%);
+			@include placeholder(30%, 25%);
 		}
 
 		.width-px-height-per {
