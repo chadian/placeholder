@@ -148,6 +148,7 @@ a {
   border-radius: 5px;
   color: #fff;
   padding: 0.25em 0.5em;
+  text-decoration: none;
 }
 
 /* line 97, ../scss/_base.scss */

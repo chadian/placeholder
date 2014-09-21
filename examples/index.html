@@ -16,7 +16,7 @@
 			</h1>
 			
 			<p>
-				An experiment exploring different methods of creating placeholders for images in our <em>fresh</em> interactive wireframes we're all using these days. There are services that will generate images, but, then you're depending on an internet connection. Hopefully, you will find one of these methods suitable and lightweight for what you're looking for.
+				Placeholder is an experiment that explores different methods of creating placeholders for images in those <em>fresh</em> interactive wireframes we're all using these days. Hopefully, you will find one of these methods suitable and lightweight for what you're looking for.
 			</p>
 		</div>
 		<div class="methods">
@@ -27,15 +27,15 @@
 				<li>Polymer <em>fancy custom element based on Google's polymer project</em></li>
 			</ul>
 			<p>
-				In all the methods there are the basic concepts of creating a container that gives flexible ways to define the dimensions. The following combinations can be used to define the layout.
+				In all the methods there are the basic concepts of creating a container that gives flexible ways to define the dimensions. The following combinations can be used to define placeholder dimensions.
 			</p>
 			<ul>
 				<li>width and height</li>
 				<li>width and ratio</li>
-				<li>ratio</li>
+				<li>ratio only</li>
 			</ul>
 			<p>
-				The advantage of using the ratio is that you can maintain an aspect ratio of the type of image you will be using. Also, if the width is set in <em>px</em> and the height as a <em>%</em>, the height percentage will be used as ratio in terms of the width, not of the parent.
+				The advantage of using the ratio is that you can maintain an aspect ratio instead of having to deal with restrictive pixels, or overriding styles. Also, if the width is set in <em>px</em> and the height as a <em>%</em>, the height percentage will be used as ratio in terms of the width, not of the parent (this can be controlled via an internal property).
 			</p>
 			<p>
 				<em>ie: width = 200px, height = 25%, the container should result in a height (based on the ratio 0.25) of 50px</em>
@@ -45,7 +45,8 @@
 	<section class="placeholder-mixin">
 		<h1>sass mixin</h1>
 		<p>
-			The idea behind the sass mixin is that you would use the mixin on css selectors to create placeholders.
+			The idea behind the sass mixin is that you would use the mixin on css selectors to create placeholders. This also puts
+			the process of defining the placeholder in your existing theme build tools. No extra files have to be included in your templates, it's simply styling.
 		</p>
 
 <pre>
@@ -118,7 +119,7 @@
 	<section class="placeholder-vanilla">
 		<h1>vanilla js</h1>
 		<p>
-			Create placeholders with <em>good 'ol javascript</em>, no dependencies on any other library. Create an element, or select one that already exists, and pass in the DOM element with the necssary options. This is method is called <em>Placeholder Vanilla</em> because there are plans to write a <em>Placeholder jQuery</em>, too.
+			Create placeholders with <em>good 'ol javascript</em>, and no dependencies on any other libraries. Create an element, or query one that already exists, then pass it in along with the necssary parameters. This method is called <em>Placeholder Vanilla</em> because there are plans to write a <em>Placeholder jQuery</em>, too. This method brings the flexibility of scripting the creation of your placeholders within javascript.
 		</p>
 <pre>
 new PlaceholderVanilla(element, options)
@@ -195,6 +196,7 @@ new PlaceholderVanilla(element_ratio_with_width_per, {
 	<section class="polymer">
 	<h1>polymer</h1>
 	<p>
+		The polymer method allows you to focuses on the HTML structure at hand. If you can write HTML, you can create a placeholder element. Another huge benefit is that you can make live changes to the placeholder by playing with different attribute values on the element.
 	</p>
 <pre>
 &lt;place-holder pwidth="" pheight="" pratio="0.0"&gt;&lt;/place-holder&gt;
@@ -252,7 +254,7 @@ new PlaceholderVanilla(element_ratio_with_width_per, {
 	</div>
 </section>
 <footer>
-	<p>created with for fun and with curiosity<br/>by chad carbert at <a href="http://www.sticksnglue.com">sticks n glue</a></p>
+	<p>made for fun by chad carbert at <a href="http://www.sticksnglue.com">sticks n glue</a></p>
 </footer>
 	<script type="text/javascript" src="../src/js/placeholder-vanilla.js"></script>
 	<script type="text/javascript" src="js/vanilla-placeholder-examples.js"></script>
