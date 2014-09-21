@@ -19,7 +19,23 @@
 
 			ready: function() {
 				
-				// Because the appendChild is overridden on this element to force the inner
+				/* 
+					In the case that dimensions are being set with an inner ratio element for height, then
+					lets encapsulate it in the shadow DOM instead of regular DOM. To achieve these we need
+					to override the way the setRadioDimensions prototype method adds inner ratio element.
+				*/
+
+				PlaceholderVanilla.prototype.setRatioDimensions = function(widthMeasure, ratioElement) {
+					
+					if (widthMeasure.number) {
+						this.element.style.width = widthMeasure.number + widthMeasure.units;
+					}
+
+					// Here's the change, appending the child to shadowRoot instead
+					this.element.shadowRoot.appendChild(ratioElement);
+				}
+
+				// destroy existing ratio element requires knowledge of the shadow dom
 				PlaceholderVanilla.prototype.destroyExistingRatioElement = function() {
 
 					var destroyQueue = this.element.shadowRoot.querySelectorAll('.' + this.RATIO_HEIGHT_ELEMENT_CLASS);
@@ -63,14 +79,6 @@
 				this.placeholderVanilla = null; // kill old one
 				this.generatePlaceholderVanilla(); // regenerate with new options
 			},
-
-			// TODO: Override prototype of PlaceholderVanilla.setRatioDimensions (since been refactored so no need to mess with DOM-level native functions)
-			// override default appendChild on element. PlaceholderVanilla injects a inner div to create the percentage height and
-			// instead of making this exposed as a normal element in the DOM we can hide it in the shadow DOM to completely encapsulate
-			// the piece that gives this element the desired height.
-			appendChild: function(child) {
-				return this.shadowRoot.appendChild(child);
-			}
 	    });
 
 	</script>

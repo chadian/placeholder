@@ -17,6 +17,10 @@ var PlaceholderVanilla = (function() {
 		}
 
 		this.options = options;
+		if (!isNaN(parseFloat(this.options.ratio))) {
+			this.options.ratio = parseFloat(this.options.ratio);
+		}
+
 		this.element = element;
 
 		this.widthMeasure = this.parseMeasure(this.options.width);
@@ -56,10 +60,12 @@ var PlaceholderVanilla = (function() {
 		
 		'shouldUseRatio' : function() {
 
+			console.log(this.options);
+
 			if (typeof this.options.useRatio == 'boolean') {
 				return this.options.useRatio;
 
-			} else if ('ratio' in this.options) {
+			} else if ('ratio' in this.options && typeof this.options.ratio == 'number') {
 				return true;
 
 			} else if (this.heightMeasure.units == '%') {
@@ -116,8 +122,8 @@ var PlaceholderVanilla = (function() {
 			return ratioElement;
 		},
 		
-		'destroyExistingRatioElement': function() {
-			var destroyQueue = this.element.getElementsByClassName(this.RATIO_HEIGHT_ELEMENT_CLASS);
+		'destroyExistingRatioElement': function(element) {
+			var destroyQueue = element.getElementsByClassName(this.RATIO_HEIGHT_ELEMENT_CLASS);
 			
 			for (var element in destroyQueue) {
 				if (element instanceof Node) {
@@ -126,9 +132,15 @@ var PlaceholderVanilla = (function() {
 			}
 		},
 
+		'clearExistingDimensions': function(element) {
+			element.style.removeProperty('width');
+			element.style.removeProperty('height');
+		},
+
 		'applyDimensions': function() {
 			
-			this.destroyExistingRatioElement();
+			this.destroyExistingRatioElement(this.element);
+			this.clearExistingDimensions(this.element)
 
 			if (this.shouldUseRatio()) {
 
