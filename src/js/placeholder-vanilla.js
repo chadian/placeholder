@@ -66,8 +66,6 @@ var PlaceholderVanilla = (function() {
 		
 		'shouldUseRatio' : function() {
 
-			console.log(this.options);
-
 			if (typeof this.options.useRatio == 'boolean') {
 				return this.options.useRatio;
 
