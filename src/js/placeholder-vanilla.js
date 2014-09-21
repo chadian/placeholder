@@ -2,13 +2,13 @@
 
 var PlaceholderVanilla = (function() {
 
+
+	/*
+		Constructor & init
+	*/
 	var placeholder = function(element, options) {
 		
 		var DEFAULT_FORCED_UNITS = 'px';
-
-		/*
-			Constructor
-		*/
 			
 		// Ensure we're dealing with a DOM element
 		if (!(element instanceof Node)) {
@@ -23,12 +23,13 @@ var PlaceholderVanilla = (function() {
 
 		this.widthMeasure.units = this.widthMeasure.units || DEFAULT_FORCED_UNITS;
 		this.heightMeasure.units = this.heightMeasure.units || DEFAULT_FORCED_UNITS;
-		console.log(this.widthMeasure);
-		console.log(this.heightMeasure);
 
 		this.applyDimensions();
 	}
 
+	/*
+		Prototype & methods
+	*/
 	placeholder.prototype = {
 
 		'parseMeasure': function(measure){
@@ -58,8 +59,10 @@ var PlaceholderVanilla = (function() {
 			if (typeof this.options.useRatio == 'boolean') {
 				return this.options.useRatio;
 
+			} else if ('ratio' in this.options) {
+				return true;
+
 			} else if (this.heightMeasure.units == '%') {
-				console.log('PER');
 				return true;
 
 			} else {
@@ -71,10 +74,9 @@ var PlaceholderVanilla = (function() {
 
 		'calculateHeightToWidthRatio': function(widthMeasure, heightMeasure) {
 
-			console.log(heightMeasure.units);
-			console.log(heightMeasure.number);
-
-			if (heightMeasure.units == '%') {
+			if ('ratio' in this.options && typeof this.options.ratio == 'number') {
+				return parseFloat(this.options.ratio);
+			} else if (heightMeasure.units == '%') {
 				return (heightMeasure.number / 100);
 			} else if (widthMeasure.units == heightMeasure.units) {
 				return heightMeasure.number / widthMeasure.number;
@@ -154,3 +156,21 @@ var placeholder_width_per_height_px = new PlaceholderVanilla(element_width_per_h
 	width: '25%',
 	height: '200px'
 });
+
+var element_ratio_only = document.getElementById('vanilla-ratio-only');
+var placeholder_element_ratio_only = new PlaceholderVanilla(element_ratio_only, {
+	ratio: 0.35
+});
+
+var element_ratio_with_width_px = document.getElementById('vanilla-ratio-with-width-px');
+var placeholder_ratio_with_width_px = new PlaceholderVanilla(element_ratio_with_width_px, {
+	width: '150px',
+	ratio: 0.65
+});
+
+var element_ratio_with_width_per = document.getElementById('vanilla-ratio-with-width-per');
+var placeholder_ratio_with_width_per = new PlaceholderVanilla(element_ratio_with_width_per, {
+	width: '25%',
+	ratio: 0.35
+});
+
