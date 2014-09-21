@@ -59,7 +59,6 @@ pre {
 	@extend %placeholder-grey-bg;
 
 	box-sizing: border-box;
-	display: block;
 }
 
 /*
@@ -124,7 +123,8 @@ header {
 	border-top: 1px dashed white;
 	padding: 2em 0;
 
-	.placeholder {
+	.placeholder, place-holder {
+		display: block;
 		margin: auto;
 	}
 }
