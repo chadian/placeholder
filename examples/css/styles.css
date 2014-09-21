@@ -117,7 +117,7 @@ pre::selection {
 }
 
 /*
-	STYLING	
+	LAYOUTS & INNEr STYLING	
 */
 /* line 67, ../scss/_base.scss */
 html, body {
@@ -142,66 +142,80 @@ body ::selection {
   background-color: rgba(255, 255, 255, 0.35);
 }
 
-/* line 89, ../scss/_base.scss */
+/* line 87, ../scss/_base.scss */
+a {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+  color: #fff;
+  padding: 0.25em 0.5em;
+}
+
+/* line 97, ../scss/_base.scss */
 header h1 {
   font-size: 4em;
   letter-spacing: 0.2em;
   margin: 1em;
   text-align: center;
 }
-/* line 96, ../scss/_base.scss */
+/* line 104, ../scss/_base.scss */
 header .intro {
   margin-bottom: 3em;
   text-align: center;
 }
-/* line 101, ../scss/_base.scss */
+/* line 109, ../scss/_base.scss */
 header .methods {
   text-align: left;
 }
-/* line 106, ../scss/_base.scss */
+/* line 114, ../scss/_base.scss */
 header ul {
   padding-left: 2em;
 }
-/* line 109, ../scss/_base.scss */
+/* line 117, ../scss/_base.scss */
 header ul li {
   margin-top: 0.5em;
   padding-left: 0.75em;
 }
-/* line 115, ../scss/_base.scss */
+/* line 123, ../scss/_base.scss */
 header place-holder {
   margin-top: 0.75em;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 122, ../scss/_base.scss */
+/* line 130, ../scss/_base.scss */
 .example {
   border-top: 1px dashed white;
   padding: 2em 0;
 }
-/* line 126, ../scss/_base.scss */
+/* line 134, ../scss/_base.scss */
 .example .placeholder, .example place-holder {
   display: block;
   margin: auto;
 }
 
 /*
-	BASIC LAYOUT
+	SECTION LAYOUT
 */
-/* line 135, ../scss/_base.scss */
+/* line 143, ../scss/_base.scss */
 header, section, footer {
   margin: auto;
   max-width: 960px;
 }
 
-/* line 140, ../scss/_base.scss */
+/* line 148, ../scss/_base.scss */
 header, section {
   margin-bottom: 3em;
 }
 
-/* line 145, ../scss/_base.scss */
+/* line 153, ../scss/_base.scss */
 section *:first-child {
   margin-top: 0;
+}
+
+/* line 159, ../scss/_base.scss */
+footer p {
+  text-align: center;
+  font-size: 0.80em;
 }
 
 /* line 57, ../../src/scss/_placeholder-mixin.scss */
