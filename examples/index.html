@@ -28,15 +28,15 @@
 				<li>Polymer <em>fancy custom element based on Google's polymer project</em></li>
 			</ul>
 			<p>
-				In all the methods there are the basic concepts of creating a container that gives flexible ways to define the dimensions. The following combinations can be used to define placeholder dimensions.
+				In all the methods there are simple ways to create flexible containers dependinging on your needs. Use the following dimension combinations to create a placeholder:
 			</p>
 			<ul>
-				<li>width and height</li>
-				<li>width and ratio</li>
-				<li>ratio only</li>
+				<li>width (pixels or percentages) and height (pixels or percentages)</li>
+				<li>width (pixels or percentages) and ratio(decimal)</li>
+				<li>ratio only (decimal)</li>
 			</ul>
 			<p>
-				The advantage of using the ratio is that you can maintain an aspect ratio instead of having to deal with restrictive pixels, or overriding styles. Also, if the width is set in <em>px</em> and the height as a <em>%</em>, the height percentage will be used as ratio in terms of the width, not of the parent (this can be controlled via an internal property).
+				The advantage of using the ratio is that you can maintain an aspect ratio instead of having to deal with restrictive pixels, or overriding styles. Also, if the width is set in <em>px</em> and the height as a <em>%</em>, the height percentage will be used as ratio in terms of the width, not of the parent (this can be controlled via an optional parameter).
 			</p>
 			<p>
 				<em>ie: width = 200px, height = 25%, the container should result in a height (based on the ratio 0.25) of 50px</em>
@@ -47,8 +47,8 @@
 		<h1>sass mixin</h1>
 		<em>Requires Sass 3.3+</em>
 		<p>
-			The idea behind the sass mixin is that you would use the mixin on css selectors to create placeholders. This also puts
-			the process of defining the placeholder in your existing theme build tools. No extra files have to be included in your templates, it's simply styling.
+			Using the placeholder mixin allows you to use css selectors to create the appropriate placeholders. This also puts
+			the process of defining placeholders in your existing theme build tools. No extra files have to be included in your html source, it's simply styling and compiled to css.
 		</p>
 
 <pre>
@@ -121,7 +121,10 @@
 	<section class="placeholder-vanilla">
 		<h1>vanilla js</h1>
 		<p>
-			Create placeholders with <em>good 'ol javascript</em>, and no dependencies on any other libraries. Create an element, or query one that already exists, then pass it in along with the necssary parameters. This method is called <em>Placeholder Vanilla</em> because there are plans to write a <em>Placeholder jQuery</em>, too. This method brings the flexibility of scripting the creation of your placeholders within javascript.
+			Create placeholders with <em>good 'ol javascript</em>(no dependencies on any other libraries). Create an element, or query one that already exists, then pass it in along with the necssary options. This method also brings the flexibility of scripting the creation of your placeholders within javascript.
+		</p>
+		<p>
+			Internally, this method is called <em>Placeholder Vanilla</em> because there are plans to write a <em>Placeholder jQuery</em>, too. 
 		</p>
 <pre>
 new PlaceholderVanilla(element, options)
@@ -198,7 +201,7 @@ new PlaceholderVanilla(element_ratio_with_width_per, {
 	<section class="polymer">
 	<h1>polymer</h1>
 	<p>
-		The polymer method allows you to focuses on the HTML structure at hand. If you can write HTML, you can create a placeholder element. Another huge benefit is that you can make live changes to the placeholder by playing with different attribute values on the element.
+		The polymer method allows you to focus on the HTML structure at hand. If you can write HTML markup, you can create a placeholder element. Another huge benefit is that you can make live changes to the placeholder by changing the element's relevant attribute values.
 	</p>
 <pre>
 &lt;place-holder pwidth="" pheight="" pratio="0.0"&gt;&lt;/place-holder&gt;
