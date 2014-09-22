@@ -82,7 +82,7 @@ html {
 }
 
 body {
-	border: 1em solid white;
+	border: 0.25em solid white;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0 1em;
@@ -92,6 +92,7 @@ body {
 	}
 	
 	@media (min-width: $wider) {
+		border: 1em solid white;
 		padding: 0 3em;
 	}	
 }
@@ -107,7 +108,7 @@ a {
 header {
 	
 	h1 {
-		font-size: 2em;
+		font-size: 1.5em;
 		letter-spacing: 0.2em;
 		margin: 0.5em;
 		text-align: center;
@@ -117,6 +118,7 @@ header {
   			margin: 1em;
 		}
 
+		// even wider, a tweak breakpoint
 		@media (min-width: 900px) {
 			font-size: 4em;
   			margin: 1em; 
