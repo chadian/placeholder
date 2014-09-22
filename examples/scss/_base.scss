@@ -2,6 +2,7 @@
 	VARS
 */
 $green: #256F5B;
+$wider: 650px;
 
 /*
 	FONTS
@@ -23,8 +24,12 @@ h2 {
 
 body, p {
 	color: #fff;
-	font-size: 22px;
+	font-size: 18px;
 	font-family: 'Droid Serif', serif;
+
+	@media (min-width: $wider) {
+		font-size: 22px;
+	}
 }
 
 p {
@@ -39,12 +44,15 @@ pre {
 	color: #256F5B;
 	font-family: "Droid Sans Mono", "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 	font-size: 0.8em;
-	margin: 2em;
 	padding: 1em;
 	overflow: scroll;
 	
 	&::selection {
 	    background-color: rgba($green, 0.35) !important;
+	}
+
+	@media (min-width: $wider) {
+		margin: 2em;
 	}
 }
 
@@ -77,11 +85,15 @@ body {
 	border: 1em solid white;
 	box-sizing: border-box;
 	margin: 0;
-	padding: 0 3em;
+	padding: 0 1em;
 
 	::selection {
 	    background-color: rgba(#fff, 0.35);
 	}
+	
+	@media (min-width: $wider) {
+		padding: 0 3em;
+	}	
 }
 
 a {
@@ -95,10 +107,20 @@ a {
 header {
 	
 	h1 {
-		font-size: 4em;
+		font-size: 2em;
 		letter-spacing: 0.2em;
-		margin: 1em;
+		margin: 0.5em;
 		text-align: center;
+
+		@media (min-width: $wider) {
+			font-size: 2.5em;
+  			margin: 1em;
+		}
+
+		@media (min-width: 900px) {
+			font-size: 4em;
+  			margin: 1em; 
+		}
 	}
 
 	.intro {
@@ -130,6 +152,7 @@ header {
 .example {
 	border-top: 1px dashed white;
 	padding: 2em 0;
+	overflow: scroll;
 
 	.placeholder, place-holder {
 		display: block;

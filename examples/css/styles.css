@@ -61,57 +61,68 @@
 /*
 	FONTS
 */
-/* line 10, ../scss/_base.scss */
+/* line 11, ../scss/_base.scss */
 h1, h2, h3, h4, h5, h6 {
   color: #fff;
   font-family: "Quicksand", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   text-transform: lowercase;
 }
 
-/* line 16, ../scss/_base.scss */
+/* line 17, ../scss/_base.scss */
 h1 {
   font-size: 2.5em;
 }
 
-/* line 20, ../scss/_base.scss */
+/* line 21, ../scss/_base.scss */
 h2 {
   font-size: 2em;
 }
 
-/* line 24, ../scss/_base.scss */
+/* line 25, ../scss/_base.scss */
 body, p {
   color: #fff;
-  font-size: 22px;
+  font-size: 18px;
   font-family: 'Droid Serif', serif;
 }
+@media (min-width: 650px) {
+  /* line 25, ../scss/_base.scss */
+  body, p {
+    font-size: 22px;
+  }
+}
 
-/* line 30, ../scss/_base.scss */
+/* line 35, ../scss/_base.scss */
 p {
   line-height: 1.5em;
   letter-spacing: 0.03em;
   margin: 1.5em 0;
 }
 
-/* line 36, ../scss/_base.scss */
+/* line 41, ../scss/_base.scss */
 pre {
   background-color: #fff;
   border-radius: 5px;
   color: #256F5B;
   font-family: "Droid Sans Mono", "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
   font-size: 0.8em;
-  margin: 2em;
   padding: 1em;
   overflow: scroll;
 }
-/* line 46, ../scss/_base.scss */
+/* line 50, ../scss/_base.scss */
 pre::selection {
   background-color: rgba(37, 111, 91, 0.35) !important;
+}
+@media (min-width: 650px) {
+  /* line 41, ../scss/_base.scss */
+  pre {
+    margin: 2em;
+  }
 }
 
 /*
 	PLACEHOLDER STYLING
 */
-/* line 55, ../scss/_base.scss */
+/* line 63, ../scss/_base.scss */
 .placeholder, place-holder {
   box-sizing: border-box;
 }
@@ -119,30 +130,36 @@ pre::selection {
 /*
 	LAYOUTS & INNEr STYLING	
 */
-/* line 67, ../scss/_base.scss */
+/* line 75, ../scss/_base.scss */
 html, body {
   background-color: #256f5b;
 }
 
-/* line 71, ../scss/_base.scss */
+/* line 79, ../scss/_base.scss */
 html {
   margin: 0;
   padding: 0;
 }
 
-/* line 76, ../scss/_base.scss */
+/* line 84, ../scss/_base.scss */
 body {
   border: 1em solid white;
   box-sizing: border-box;
   margin: 0;
-  padding: 0 3em;
+  padding: 0 1em;
 }
-/* line 82, ../scss/_base.scss */
+/* line 90, ../scss/_base.scss */
 body ::selection {
   background-color: rgba(255, 255, 255, 0.35);
 }
+@media (min-width: 650px) {
+  /* line 84, ../scss/_base.scss */
+  body {
+    padding: 0 3em;
+  }
+}
 
-/* line 87, ../scss/_base.scss */
+/* line 99, ../scss/_base.scss */
 a {
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: 5px;
@@ -151,44 +168,59 @@ a {
   text-decoration: none;
 }
 
-/* line 97, ../scss/_base.scss */
+/* line 109, ../scss/_base.scss */
 header h1 {
-  font-size: 4em;
+  font-size: 2em;
   letter-spacing: 0.2em;
-  margin: 1em;
+  margin: 0.5em;
   text-align: center;
 }
-/* line 104, ../scss/_base.scss */
+@media (min-width: 650px) {
+  /* line 109, ../scss/_base.scss */
+  header h1 {
+    font-size: 2.5em;
+    margin: 1em;
+  }
+}
+@media (min-width: 900px) {
+  /* line 109, ../scss/_base.scss */
+  header h1 {
+    font-size: 4em;
+    margin: 1em;
+  }
+}
+/* line 126, ../scss/_base.scss */
 header .intro {
   margin-bottom: 3em;
   text-align: center;
 }
-/* line 109, ../scss/_base.scss */
+/* line 131, ../scss/_base.scss */
 header .methods {
   text-align: left;
 }
-/* line 114, ../scss/_base.scss */
+/* line 136, ../scss/_base.scss */
 header ul {
   padding-left: 2em;
 }
-/* line 117, ../scss/_base.scss */
+/* line 139, ../scss/_base.scss */
 header ul li {
   margin-top: 0.5em;
   padding-left: 0.75em;
 }
-/* line 123, ../scss/_base.scss */
+/* line 145, ../scss/_base.scss */
 header place-holder {
   margin-top: 0.75em;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 130, ../scss/_base.scss */
+/* line 152, ../scss/_base.scss */
 .example {
   border-top: 1px dashed white;
   padding: 2em 0;
+  overflow: scroll;
 }
-/* line 134, ../scss/_base.scss */
+/* line 157, ../scss/_base.scss */
 .example .placeholder, .example place-holder {
   display: block;
   margin: auto;
@@ -197,23 +229,23 @@ header place-holder {
 /*
 	SECTION LAYOUT
 */
-/* line 143, ../scss/_base.scss */
+/* line 166, ../scss/_base.scss */
 header, section, footer {
   margin: auto;
   max-width: 960px;
 }
 
-/* line 148, ../scss/_base.scss */
+/* line 171, ../scss/_base.scss */
 header, section {
   margin-bottom: 3em;
 }
 
-/* line 153, ../scss/_base.scss */
+/* line 176, ../scss/_base.scss */
 section *:first-child {
   margin-top: 0;
 }
 
-/* line 159, ../scss/_base.scss */
+/* line 182, ../scss/_base.scss */
 footer p {
   text-align: center;
   font-size: 0.80em;
